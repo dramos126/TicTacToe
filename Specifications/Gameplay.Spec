@@ -15,13 +15,13 @@ When:   When player selects position S
 Then:   Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
         notify P that S is full
         Determine Winner
-        Accept selection from P
+        Player P can select position
 
 #------------------
 #UI Implementation:
 #------------------
 #Then:
-#        notify P that S is full = "Position S is full, try again"
+#        Player P can select position = "Position S is full, try again"
 
 #--------------------------------------------
 Scenario: Player turn when selection is empty

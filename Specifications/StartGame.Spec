@@ -3,7 +3,7 @@
 #-----------------
 
 #Players = {X | O}
-#Empty Board = {Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø}
+#EMPTY Board = {Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø}
 ------------------------
 Scenario: Start the game
 ------------------------
@@ -11,7 +11,7 @@ Given:  Game is not started
 
 When:   Game is started
 
-Then:   Board is Empty
+Then:   Board is EMPTY
         Determine Winner
         Determine Next Action
 

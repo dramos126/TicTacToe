@@ -1,19 +1,19 @@
 #----------------------------
-#Story: Determine Next action
+#Story: Determine next action
 #----------------------------
 
-#------------
+#-------------------
 Scenario: Start Game
-#------------
+#-------------------
 Given:  Game is not started
 
 When:   Game is started
 
 Then:   player X can select a position
 
-#------------
-Scenario: Player does not win - board not filled
-#------------
+#---------------------------------------------
+Scenario: Player does not win & board not full
+#---------------------------------------------
 Given:  Some Board B
         position S
         B has less than 8 filled positions
@@ -31,9 +31,9 @@ Then:   player Q can select a position
 #Then:
 #    player Q can select a position = "Player Q turn, please select - "
 
-#------------
+#--------------------
 Scenario: Player wins
-#------------
+#--------------------
 Given:  Some Board B
         position S
         S is an empty position
@@ -43,9 +43,9 @@ When:   Player P selects S
 
 Then:   Announce End of Game
 
-#------------
-Scenario: Board filled
-#------------
+#-------------------
+Scenario: Board full
+#-------------------
 Given:  Some Board B
         B has 8 filled positions
         position S is the empty position in B
