@@ -25,6 +25,12 @@ When:   Player P selects S
 
 Then:   player Q can select a position
 
+#------------------
+#UI Implementation:
+#------------------
+#Then:
+#    player Q can select a position = "Player Q turn, please select - "
+
 #------------
 Scenario: Player wins
 #------------
@@ -53,4 +59,3 @@ Then:   Announce End of Game
 #------------------
 #Then:
 #    Announce End of Game = "Game Over"
-#    player Q can select a position = "Player Q turn, please select - "
