@@ -23,13 +23,13 @@ Given:  Some Board B
 
 When:   Player P selects S
 
-Then:   player Q can select a position
+Then:   player Q's turn
 
 #------------------
 #UI Implementation:
 #------------------
 #Then:
-#    player Q can select a position = "Player Q turn, please select - "
+#    player Q's turn = "Player Q turn, please select - "
 
 #--------------------
 Scenario: Player wins

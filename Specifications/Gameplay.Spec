@@ -6,41 +6,39 @@
 Scenario: Player turn when selection is not empty
 #------------------------------------------------
 Given:  Game is started
-        Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
+        Board is B with position S not empty
         Player P's turn
-        position S is not empty
 
-When:   When player selects position S
+When:   P selects S
 
-Then:   Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
-        notify P that S is full
+Then:   Board is B
+        Notify P that S is full
         Determine Winner
-        Player P can select position
+        Player P's turn
 
 #------------------
 #UI Implementation:
 #------------------
 #Then:
-#        Player P can select position = "Position S is full, try again"
+#        Player P's turn = "Position S is full, try again"
 
 #--------------------------------------------
 Scenario: Player turn when selection is empty
 #--------------------------------------------
 Given:  Game is started
-        Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
+        Board is B with position S empty
         Player P's turn
-        S = Ø
 
-When:   When player selects position S
+When:   P selects S
 
-Then:   Board is {b1', b2', b3', b4', b5', b6', b7', b8', b9'}
-            Where bi' = bi EXCEPT bS = P
+Then:   Board is B with position S containing P
         Determine Winner
         Determine Next Action
 
 #------------------
 #UI Implementation:
 #------------------
+# bi' = bi except bS' = P
 #Then:      {b1', b2', b3', b4', b5', b6', b7', b8', b9'} =
 #                         +..-+..-+..-+
 #                         |b1'|b2'|b3'|
