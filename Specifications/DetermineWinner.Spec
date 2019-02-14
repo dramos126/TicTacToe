@@ -1,44 +1,35 @@
-------------------------
-Scenario: Determine Winner
-------------------------
+#-----------------------
+#Story: Determine Winner
+#-----------------------
 
-------------
-Scenario 0
-------------
-Given:  Game is not started
-
-When:   Game is started
-
-Then:   No Winner
-
-------------
-Scenario 1
-------------
+-------------------
+Scenario: No Winner
+-------------------
 Given:  Some Board B
-        position S
-        selecting S will result in 3 P in a line
+        S does not have 3 P's in a line
 
-When:   Player selects S
-
-Then:   P won
-
-------------
-UI Scenario:
-------------
-Then:
-    P won = "Player P won"
-
-Given:  Some Board B
-        position S
-        selecting S will not result in 3 P in a line
-
-When:   Player P selects S
+When:   Check for winner
 
 Then:   No winner
 
-------------
-UI Scenario:
-------------
-Then:
-    No winner = "No Winner"
-    P won = "Player P Won"
+#------------------
+#UI Implementation:
+#------------------
+#Then:
+#    No winner = "No Winner"
+
+---------------------
+Scenario: Player Wins
+---------------------
+Given:  Some Board B
+        S has 3 P's in a line
+
+When:   Check for winner
+
+Then:   P won
+
+#------------------
+#UI Implementation:
+#------------------
+#Then:
+#    P won = "Player P Won"

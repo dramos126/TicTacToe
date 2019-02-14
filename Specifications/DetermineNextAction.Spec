@@ -1,19 +1,19 @@
-------------------------
-Scenario: Determine Endgame
-------------------------
+#----------------------------
+#Story: Determine Next action
+#----------------------------
 
-------------
-Scenario 0
-------------
+#------------
+Scenario: Start Game
+#------------
 Given:  Game is not started
 
 When:   Game is started
 
 Then:   player X can select a position
 
-------------
-Scenario 1
-------------
+#------------
+Scenario: Player does not win - board not filled
+#------------
 Given:  Some Board B
         position S
         B has less than 8 filled positions
@@ -25,9 +25,9 @@ When:   Player P selects S
 
 Then:   player Q can select a position
 
-------------
-Scenario 2
-------------
+#------------
+Scenario: Player wins
+#------------
 Given:  Some Board B
         position S
         S is an empty position
@@ -37,10 +37,9 @@ When:   Player P selects S
 
 Then:   Announce End of Game
 
-------------
-Scenario 3
-------------
-
+#------------
+Scenario: Board filled
+#------------
 Given:  Some Board B
         B has 8 filled positions
         position S is the empty position in B
@@ -49,9 +48,9 @@ When:   Player P selects S
 
 Then:   Announce End of Game
 
-------------
-UI Scenario:
-------------
-Then:
-    Announce End of Game = "Game Over"
-    player Q can select a position = "Player Q turn, please select - "
+#------------------
+#UI Implementation:
+#------------------
+#Then:
+#    Announce End of Game = "Game Over"
+#    player Q can select a position = "Player Q turn, please select - "
