@@ -1,16 +1,26 @@
 ------------------------
 Scenario: Determine Winner
 ------------------------
-Description: Duh
 
+------------
+Scenario 0
+------------
+Given:  Game is not started
+
+When:   Game is started
+
+Then:   No Winner
+
+------------
+Scenario 1
+------------
 Given:  Some Board B
-        selecting X will result in 3 in a line
+        position S
+        selecting S will result in 3 P in a line
 
-When:   Player P selects position X
+When:   Player selects S
 
 Then:   P won
-
-Empty Board = {Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø}
 
 ------------
 UI Scenario:
@@ -19,8 +29,16 @@ Then:
     P won = "Player P won"
 
 Given:  Some Board B
-        selecting X will not result in 3 in a line
+        position S
+        selecting S will not result in 3 P in a line
 
-When:   Player P selects position X
+When:   Player P selects S
 
 Then:   No winner
+
+------------
+UI Scenario:
+------------
+Then:
+    No winner = "No Winner"
+    P won = "Player P Won"

@@ -9,10 +9,8 @@ Given:  Game is not started
 When:   Game is started
 
 Then:   Board is Empty
-        No Winner
-        player X can select position
-
-
+        announce Winner
+        determine end of game
 
 ------------
 UI Scenario:

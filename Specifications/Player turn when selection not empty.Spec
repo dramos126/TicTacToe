@@ -6,12 +6,12 @@ Description: A unsuccessful move
 Given:  Game is started
         Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
         Player P's turn
-        b1 = Any P
+ *      position S = not empty
 
-When:   When player selects position C (ex 1)
+When:   When player selects position S
 
-Then:   Board is {P, b2, b3, b4, b5, b6, b7, b8, b9}
-        notify P that the position is full
+Then:   Board is {b1, b2, b3, b4, b5, b6, b7, b8, b9}
+        notify P that S is full
         announce Winner
         Accpet selection from P
 
