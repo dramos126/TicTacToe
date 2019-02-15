@@ -6,7 +6,7 @@
 Scenario: No Winner
 -------------------
 Given:  Some Board B
-        S does not have 3 P's in a line
+        B does not have 3 P's in a line
 
 When:   Check for winner
 
@@ -22,7 +22,7 @@ Then:   No winner
 Scenario: Player Wins
 ---------------------
 Given:  Some Board B
-        S has 3 P's in a line
+        B has 3 P's in a line
 
 When:   Check for winner
 
