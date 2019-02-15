@@ -2,7 +2,7 @@
 #Story: Start Game
 #-----------------
 
-#Players = {X | O}
+#Players P = {X | O}
 #EMPTY Board = {Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø,Ø}
 ------------------------
 Scenario: Start the game
@@ -12,8 +12,6 @@ Given:  Game is not started
 When:   Game is started
 
 Then:   Board is EMPTY
-        Determine Winner
-        Determine Next Action
 
 #------------------
 #UI Implementation:

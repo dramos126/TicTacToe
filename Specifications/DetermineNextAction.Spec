@@ -25,6 +25,17 @@ When:   Player P selects S
 
 Then:   player Q's turn
 
+#---------------------------------------------
+Scenario: Illegal Player Move
+#---------------------------------------------
+Given:  Some Board B
+        position S
+        S is not empty
+
+When:   Player P selects S
+
+Then:   player P's turn
+
 #------------------
 #UI Implementation:
 #------------------
