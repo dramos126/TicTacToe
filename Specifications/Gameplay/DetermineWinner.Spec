@@ -1,14 +1,24 @@
 #-----------------------
 #Story: Determine Winner
 #-----------------------
+#-------------------
+Scenario: Start Game
+#-------------------
+Given:  Game is not started
+
+When:   Game is started
+
+Then:   No winner
 
 -------------------
 Scenario: No Winner
 -------------------
 Given:  Some Board B
-        B does not have 3 P's in a line
+        Position S
+        Player P's turn
+        Selecting S will put 3 P's in a line on B
 
-When:   Check for winner
+When:   P selects S
 
 Then:   No winner
 
@@ -22,9 +32,11 @@ Then:   No winner
 Scenario: Player Wins
 ---------------------
 Given:  Some Board B
-        B has 3 P's in a line
+        Position S
+        Player P turn
+        Selecting S will 3 P's in a line on B
 
-When:   Check for winner
+When:   P selects S
 
 Then:   P won
 
