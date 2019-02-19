@@ -7,14 +7,15 @@ class Tictactoe {
 
         while (boardIsNotFull()) {
             updateBoard();
-            if (checkWinner()) {
+            if (playerHasWon()) {
                 break;
             }
             switchPlayer();
         }
     }
 
-    private static String[] POSITION = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    private static final String[] POSITION = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    private static final String DIGITS = "[1-9]";
     private static String[] PLAYERS = {"X", "O"};
     private static String CURRENT_PLAYER = PLAYERS[0];
 
@@ -29,7 +30,7 @@ class Tictactoe {
 
 
     private void updateBoard() {
-        String update = playerInput(CURRENT_PLAYER);
+        String update = playerInput();
         for (int i = 0; i < POSITION.length; i++) {
             if (update.equals(POSITION[i])) {
                 POSITION[i] = CURRENT_PLAYER;
@@ -38,11 +39,11 @@ class Tictactoe {
         printBoard();
     }
 
-    private String playerInput(String player) {
+    private String playerInput() {
         Scanner scanner = new Scanner(System.in);
         String userInput;
 
-        print("Player " + player + " select a position");
+        print("Player " + CURRENT_PLAYER + " turn, please select");
 
         do {
             userInput = scanner.nextLine();
@@ -52,7 +53,7 @@ class Tictactoe {
     }
 
     private boolean userInputIsInvalid(String playerInput) {
-        if (!playerInput.matches("[1-9]") || playerInput.length() != 1) {
+        if (!playerInput.matches(DIGITS) || playerInput.length() != 1) {
             print("Invalid input, please try again.");
             return true;
         }
@@ -61,7 +62,7 @@ class Tictactoe {
 
     private boolean positionIsNotAvailable(String playerInput) {
         for (int i = 0; i < POSITION.length; i++) {
-            if (playerInput.equals(POSITION[i]) && POSITION[i].matches("[1-9]")) {
+            if (playerInput.equals(POSITION[i]) && POSITION[i].matches(DIGITS)) {
                 return false;
             }
         }
@@ -69,7 +70,7 @@ class Tictactoe {
         return true;
     }
 
-    private boolean checkWinner() {
+    private boolean playerHasWon() {
         boolean win[] = {
                 POSITION[0].matches(CURRENT_PLAYER) && POSITION[1].matches(CURRENT_PLAYER) && POSITION[2].matches(CURRENT_PLAYER),
                 POSITION[3].matches(CURRENT_PLAYER) && POSITION[4].matches(CURRENT_PLAYER) && POSITION[5].matches(CURRENT_PLAYER),
@@ -92,7 +93,7 @@ class Tictactoe {
         int openSpots = POSITION.length;
 
         for (String position : POSITION) {
-            if (!position.matches("[1-9]")) {
+            if (!position.matches(DIGITS)) {
                 openSpots--;
             }
         }
