@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
-class Tictactoe {
+class TicTacToe {
 
     void playGame() {
+        print("\nGame Started -- Enter 'Quit' to exit game\n");
+
         printBoard();
 
         while (boardIsNotFull()) {
@@ -15,9 +17,10 @@ class Tictactoe {
     }
 
     private static final String[] POSITION = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-    private static final String DIGITS = "[1-9]";
-    private static String[] PLAYERS = {"X", "O"};
+    private static final String DIGITS = "[0-9]";
+    private static final String[] PLAYERS = {"X", "O"};
     private static String CURRENT_PLAYER = PLAYERS[0];
+    private static int OPEN_POSITIONS = POSITION.length;
 
 
     private void printBoard() {
@@ -41,18 +44,24 @@ class Tictactoe {
 
     private String playerInput() {
         Scanner scanner = new Scanner(System.in);
-        String userInput;
-
+        String playerInput;
         print("Player " + CURRENT_PLAYER + " turn, please select");
-
         do {
-            userInput = scanner.nextLine();
-        } while (userInputIsInvalid(userInput) || positionIsNotAvailable(userInput));
-
-        return userInput;
+            playerInput = scanner.nextLine();
+        }
+        while (playerHasNotQuit(playerInput) || playerInputIsInvalid(playerInput) || positionIsNotAvailable(playerInput));
+        return playerInput;
     }
 
-    private boolean userInputIsInvalid(String playerInput) {
+    private boolean playerHasNotQuit(String playerInput) {
+        if (playerInput.equalsIgnoreCase("exit")) {
+            print("Player " + CURRENT_PLAYER + " has quit.");
+            System.exit(0);
+        }
+        return false;
+    }
+
+    private boolean playerInputIsInvalid(String playerInput) {
         if (!playerInput.matches(DIGITS) || playerInput.length() != 1) {
             print("Invalid position, please try again.");
             return true;
@@ -61,8 +70,8 @@ class Tictactoe {
     }
 
     private boolean positionIsNotAvailable(String playerInput) {
-        for (String aPOSITION : POSITION) {
-            if (playerInput.equals(aPOSITION) && aPOSITION.matches(DIGITS)) {
+        for (String availablePosition : POSITION) {
+            if (playerInput.equals(availablePosition) && availablePosition.matches(DIGITS)) {
                 return false;
             }
         }
@@ -72,14 +81,14 @@ class Tictactoe {
 
     private boolean playerHasWon() {
         boolean win[] = {
-                POSITION[0].matches(CURRENT_PLAYER) && POSITION[1].matches(CURRENT_PLAYER) && POSITION[2].matches(CURRENT_PLAYER),
-                POSITION[3].matches(CURRENT_PLAYER) && POSITION[4].matches(CURRENT_PLAYER) && POSITION[5].matches(CURRENT_PLAYER),
-                POSITION[6].matches(CURRENT_PLAYER) && POSITION[7].matches(CURRENT_PLAYER) && POSITION[8].matches(CURRENT_PLAYER),
-                POSITION[0].matches(CURRENT_PLAYER) && POSITION[3].matches(CURRENT_PLAYER) && POSITION[6].matches(CURRENT_PLAYER),
-                POSITION[1].matches(CURRENT_PLAYER) && POSITION[4].matches(CURRENT_PLAYER) && POSITION[7].matches(CURRENT_PLAYER),
-                POSITION[2].matches(CURRENT_PLAYER) && POSITION[5].matches(CURRENT_PLAYER) && POSITION[8].matches(CURRENT_PLAYER),
-                POSITION[0].matches(CURRENT_PLAYER) && POSITION[4].matches(CURRENT_PLAYER) && POSITION[8].matches(CURRENT_PLAYER),
-                POSITION[2].matches(CURRENT_PLAYER) && POSITION[4].matches(CURRENT_PLAYER) && POSITION[6].matches(CURRENT_PLAYER),
+                POSITION[0].equals(CURRENT_PLAYER) && POSITION[1].equals(CURRENT_PLAYER) && POSITION[2].equals(CURRENT_PLAYER),
+                POSITION[3].equals(CURRENT_PLAYER) && POSITION[4].equals(CURRENT_PLAYER) && POSITION[5].equals(CURRENT_PLAYER),
+                POSITION[6].equals(CURRENT_PLAYER) && POSITION[7].equals(CURRENT_PLAYER) && POSITION[8].equals(CURRENT_PLAYER),
+                POSITION[0].equals(CURRENT_PLAYER) && POSITION[3].equals(CURRENT_PLAYER) && POSITION[6].equals(CURRENT_PLAYER),
+                POSITION[1].equals(CURRENT_PLAYER) && POSITION[4].equals(CURRENT_PLAYER) && POSITION[7].equals(CURRENT_PLAYER),
+                POSITION[2].equals(CURRENT_PLAYER) && POSITION[5].equals(CURRENT_PLAYER) && POSITION[8].equals(CURRENT_PLAYER),
+                POSITION[0].equals(CURRENT_PLAYER) && POSITION[4].equals(CURRENT_PLAYER) && POSITION[8].equals(CURRENT_PLAYER),
+                POSITION[2].equals(CURRENT_PLAYER) && POSITION[4].equals(CURRENT_PLAYER) && POSITION[6].equals(CURRENT_PLAYER),
         };
 
         if (win[0] || win[1] || win[2] || win[3] || win[4] || win[5] || win[6] || win[7]) {
@@ -90,18 +99,11 @@ class Tictactoe {
     }
 
     private boolean boardIsNotFull() {
-        int openSpots = POSITION.length;
-
-        for (String position : POSITION) {
-            if (!position.matches(DIGITS)) {
-                openSpots--;
-            }
-        }
-
-        if (openSpots == 0) {
+        if (OPEN_POSITIONS == 0) {
             print("Game Over");
             return false;
         }
+        OPEN_POSITIONS--;
         return true;
     }
 
