@@ -54,15 +54,15 @@ class Tictactoe {
 
     private boolean userInputIsInvalid(String playerInput) {
         if (!playerInput.matches(DIGITS) || playerInput.length() != 1) {
-            print("Invalid input, please try again.");
+            print("Invalid position, please try again.");
             return true;
         }
         return false;
     }
 
     private boolean positionIsNotAvailable(String playerInput) {
-        for (int i = 0; i < POSITION.length; i++) {
-            if (playerInput.equals(POSITION[i]) && POSITION[i].matches(DIGITS)) {
+        for (String aPOSITION : POSITION) {
+            if (playerInput.equals(aPOSITION) && aPOSITION.matches(DIGITS)) {
                 return false;
             }
         }
@@ -106,11 +106,7 @@ class Tictactoe {
     }
 
     private void switchPlayer() {
-        if (CURRENT_PLAYER.equals(PLAYERS[0])) {
-            CURRENT_PLAYER = PLAYERS[1];
-        } else {
-            CURRENT_PLAYER = PLAYERS[0];
-        }
+        CURRENT_PLAYER = (CURRENT_PLAYER.equals(PLAYERS[0])) ? PLAYERS[1] : PLAYERS[0];
     }
 
     private void print(String whatToPrint) {
